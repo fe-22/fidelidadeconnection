@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<htm lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='FidelidadeConnect\static\img\favicon.ico') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Cadastro Membro ADFidelidade</title>
+</head>
+<>
+    <div class="container">
+        <!-- Cabeçalho -->
+        <div class="header">
+            <div class="logo-container">
+                <img src="{{ url_for('static', filename='FidelidadeConnect\static\img\logo_church.png') }}" alt="logo_church" width="200" height="150" title="image_title">
+            </div>
+            <div class="header-content">
+                <h2>IGREJA EVANGÉLICA ASSEMBLEIA DE DEUS</h2>
+                <h2>MINISTÉRIO FIDELIDADE</h2>
+                <h3>Pastor Presidente: Eudes Ângelo de Almeida</h3>
+            </div>
+        </div>
+    </div>
+
+
+
+        <!-- Formulário -->
+        <div class="form-container">
+            <form id="cadastroForm">
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" name="nome">
+                </div>
+                <div class="form-group">
+                    <label for="data_nascimento">Data de Nascimento</label>
+                    <input type="date" id="data_nascimento" name="data_nascimento">
+                </div>
+                <div class="form-group">
+                    <label for="conjugue">Cônjuge</label>
+                    <input type="text" id="conjugue" name="conjugue">
+                </div>
+                <div class="form-group">
+                    <label for="estado_civil">Estado Civil:</label>
+                    <select id="estado_civil" name="estado_civil">
+                        <option value="casado">Casado</option>
+                        <option value="solteiro">Solteiro</option>
+                        <option value="viuvo">Viúvo</option>
+                        <option value="divorciado">Divorciado</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="telefone_fixo">Telefone Fixo:</label>
+                    <input type="tel" id="telefone_fixo" name="telefone_fixo" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefone_celular">Telefone Celular/WhatsApp:</label>
+                    <input type="tel" id="telefone_celular" name="telefone_celular" required>
+                </div>
+                <div class="form-group">
+                    <label for="redes_sociais">Redes Sociais:</label>
+                    <input type="text" id="redes_sociais" name="redes_sociais" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <section class="adicionar_filho">
+                    <fieldset class="adicionar_filho">
+                        <label for="filho">Nome do Filho:</label>
+                        <input type="text" id="filho" name="filho[]" placeholder="Nome do Filho." required>
+                        <br>
+                        <label for="data_nascimento_filho">Data de Nascimento:</label>
+                        <input type="date" id="data_nascimento_filho" name="data_nascimento_filho[]" placeholder="Data de Nascimento" required>
+                    </fieldset>
+                    <button type="button" id="adicionar_filho" class="add-child-button">+</button>
+                </section>
+                <section class="historico_eclesiastico">
+                    <h1>Histórico Eclesiástico</h1>
+                    <div class="radio-group">
+                        <label for="batizado_aguas">Batizado nas Águas:</label>
+                        <input type="radio" id="batizado_sim" name="batizado" value="sim">
+                        <label for="batizado_sim">Sim</label>
+                        <input type="radio" id="batizado_nao" name="batizado" value="nao">
+                        <label for="batizado_nao">Não</label>
+                        <input type="date" id="data_batismo" name="data_batismo">
+                    </div>
+                    <div class="radio-group">
+                        <label for="consagrado_ministerios">Consagrado a Ministérios:</label>
+                        <input type="radio" id="consagrado_sim" name="consagrado" value="sim">
+                        <label for="consagrado_sim">Sim</label>
+                        <input type="radio" id="consagrado_nao" name="consagrado" value="nao">
+                        <label for="consagrado_nao">Não</label>
+                        <div id="ministerios">
+                            <label for="ministerio">Ministério:</label>
+                            <select id="ministerio" name="ministerio">
+                                <option value="Pastor">Pastor</option>
+                                <option value="Evangelista">Evangelista</option>
+                                <option value="Presbítero">Presbítero</option>
+                                <option value="Diácono">Diácono</option>
+                                <option value="Cooperador">Cooperador</option>
+                                <option value="Membro">Membro</option>
+                            </select>
+                            <label for="data_consagracao">Data da Consagração:</label>
+                            <input type="date" id="data_consagracao" name="data_consagracao">
+                            <label for="local_consagracao">Local da Consagração:</label>
+                            <input type="text" id="local_consagracao" name="local_consagracao">
+                        </div>
+                    </div>
+                    <div class="radio-group">
+                        <label for="exerce_funcao">Já Exerceu Alguma Função na Igreja:</label>
+                        <input type="radio" id="exerce_funcao_sim" name="exerce_funcao" value="sim">
+                        <label for="exerce_funcao_sim">Sim</label>
+                        <input type="radio" id="exerce_funcao_nao" name="exerce_funcao" value="nao">
+                        <label for="exerce_funcao_nao">Não</label>
+                        <input type="text" id="funcao_exercida" name="funcao_exercida" placeholder="Qual função?">
+                    </div>
+                    <div class="radio-group">
+                        <label for="trabalhar_igreja">Gostaria de Trabalhar na Igreja:</label>
+                        <input type="radio" id="trabalhar_igreja_sim" name="trabalhar_igreja" value="sim">
+                        <label for="trabalhar_igreja_sim">Sim</label>
+                        <input type="radio" id="trabalhar_igreja_nao" name="trabalhar_igreja" value="nao">
+                        <label for="trabalhar_igreja_nao">Não</label>
+                        <input type="text" id="funcao_gostaria" name="funcao_gostaria" placeholder="Qual função?">
+                    </div>
+                    <div class="radio-group">
+                        <label for="curso_teo">Cursos de Teologia:</label>
+                        <select id="curso_teo" name="curso_teo">
+                            <option value="basico">Básico</option>
+                            <option value="medio">Médio</option>
+                            <option value="graduado">Graduado</option>
+                            <option value="mestrado">Mestrado</option>
+                            <option value="doutorado">Doutorado</option>
+                            <option value="naocursado">Não cursou</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="historico_eclesiastico">Histórico Eclesiástico:</label>
+                        <textarea id="historico_eclesiastico" name="historico_eclesiastico" rows="4" required></textarea>
+                    </div>
+                    <div class="radio-group">
+                        <label for="recebimento_membro">Recebimento de Membro:</label>
+                        <input type="radio" id="recebimento_adesao" name="recebimento_membro" value="adesao">
+                        <label for="recebimento_adesao">Adesão</label>
+                        <input type="radio" id="recebimento_batismo" name="recebimento_membro" value="batismo">
+                        <label for="recebimento_batismo">Batismo</label>
+                        <input type="radio" id="recebimento_reconciliacao" name="recebimento_membro" value="reconciliacao">
+                        <label for="recebimento_reconciliacao">Reconciliação</label>
+                        <input type="date" id="data_recebimento" name="data_recebimento">
+                    </div>
+                </section>
+                <div class="form-group">
+                    <input type="submit" value="Enviar" id="submitForm">
+                </div>
+            </form>
+
+            <form action="pes.html" method="GET">
+                <button type="submit">Ver últimos cadastros</button>
+            </form>
+        </div>
+
+        <!-- Rodapé -->
+        <footer>
+            <p>&copy; 2024 IGREJA EVANGÉLICA ASSEMBLEIA DE DEUS - MINISTÉRIO FIDELIDADE</p>
+            <p>"Nós do ministério Fidelidade sob a proteção de Deus, estamos compromissados na divulgação do evangelho de Jesus Cristo e com a defesa da família".</p>
+            <pre>Rua Ernesta Pelosine, 196 - Centro de São Bernardo do Campo - SP</pre>
+            <pre>Cep:09771-220 - Tel:(11)2758-2589 - 9.5269-3719</pre>
+        </footer>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

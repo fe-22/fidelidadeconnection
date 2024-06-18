@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Membros-ADFidelidade</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="C://Users//DELL//OneDrive//vs-python//my_flask_project//static//js//dashboard_data.js"></script>
+</head>
+<body>
+    <h1>Cadastros - ADFidelidade/Sede</h1>
+    <form method="GET" action="/result">
+        <input type="text" name="termo_busca" placeholder="Buscar por nome">
+        <button type="submit">Buscar</button>
+        <button type="button" onclick="window.history.back()">Voltar</button>
+    </form>
+    <h2>Resultados da Busca</h2>
+    {% if cadastros %}
+        <table>
+            <tr>
+                <th>Nome</th>
+                <th>Data de Nascimento</th>
+                <th>Conjugue</th>
+                <th>Estado Civil</th>
+                <th>Telefone Fixo</th>
+                <th>Telefone Celular</th>
+                <th>Redes Sociais</th>
+                <th>Email</th>
+                <th>Filhos</th>
+                <th>Data de Nascimento dos Filhos</th>
+                <th>Batizado</th>
+                <th>Data do Batismo</th>
+                <th>Consagrado</th>
+                <th>Ministério</th>
+                <th>Data da Consagração</th>
+                <th>Local da Consagração</th>
+                <th>Exerce Função</th>
+                <th>Função Exercida</th>
+                <th>Trabalha na Igreja</th>
+                <th>Função Pretendida na Igreja</th>
+                <th>Curso de Teologia</th>
+                <th>Histórico Eclesiástico</th>
+                <th>Recebimento na Igreja</th>
+                <th>Data do Recebimento</th>
+            </tr>
+            {% for cadastro in cadastros %}
+                <tr>
+                    <td>{{ cadastro['nome'] }}</td>
+                    <td>{{ cadastro['data_nascimento'] }}</td>
+                    <td>{{ cadastro['conjugue'] }}</td>
+                    <td>{{ cadastro['estado_civil'] }}</td>
+                    <td>{{ cadastro['telefone_fixo'] }}</td>
+                    <td>{{ cadastro['telefone_celular'] }}</td>
+                    <td>{{ cadastro['redes_sociais'] }}</td>
+                    <td>{{ cadastro['email'] }}</td>
+                    <td>{{ cadastro['filhos'] }}</td>
+                    <td>{{ cadastro['data_nascimento_filhos'] }}</td>
+                    <td>{{ cadastro['batizado'] }}</td>
+                    <td>{{ cadastro['data_batismo'] }}</td>
+                    <td>{{ cadastro['consagrado'] }}</td>
+                    <td>{{ cadastro['ministerio'] }}</td>
+                    <td>{{ cadastro['data_consagracao'] }}</td>
+                    <td>{{ cadastro['local_consagracao'] }}</td>
+                    <td>{{ cadastro['exerce_funcao'] }}</td>
+                    <td>{{ cadastro['funcao_exercida'] }}</td>
+                    <td>{{ cadastro['trabalhar_igreja'] }}</td>
+                    <td>{{ cadastro['funcao_gostaria'] }}</td>
+                    <td>{{ cadastro['curso_teo'] }}</td>
+                    <td>{{ cadastro['historico_eclesiastico'] }}</td>
+                    <td>{{ cadastro['recebimento_membro'] }}</td>
+                    <td>{{ cadastro['data_recebimento'] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Nenhum cadastro encontrado.</p>
+    {% endif %}
+
+    <h2>Evolução da Igreja: Membros</h2>
+    <canvas id="cadastrosVelocimetro"></canvas>
+    <canvas id="estadoCivilPizza"></canvas>
+    <canvas id="funcoesIgrejaBarras"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="static\js\dashboard_data.js"></script>
+    <script>
+        // Carregar os dados de um arquivo JavaScript externo ou definir os dados aqui
+       
+        var cadastrosData = [/* total de cadastros */];
+        var estadoCivilData = [/* proporção de membros por estado civil */];
+        var funcoesIgrejaData = [/* proporção de membros por função na igreja */];
+        
+        var cadastrosVelocimetro = new Chart(document.getElementById('cadastrosVelocimetro'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Cadastros'],
+                datasets: [{
+                    data: cadastrosData,
+                    backgroundColor: ['#FF6384']
+                }]
+            },
+            options: {
+                // Opções do gráfico de velocímetro
+            }
+        });
+
+        var estadoCivilPizza = new Chart(document.getElementById('estadoCivilPizza'), {
+            type: 'pie',
+            data: {
+                labels: ['Solteiro', 'Casado', 'Divorciado', 'Viúvo'], // Exemplos de labels
+                datasets: [{
+                    data: estadoCivilData,
+                    backgroundColor: [
+                        '#FF6384',
+                        '#36A2EB',
+                        '#FFCE56',
+                        // Adicione mais cores se necessário
+                    ]
+                }]
+            },
+            options: {
+                // Opções do gráfico de pizza
+            }
+        });
+
+        var funcoesIgrejaBarras = new Chart(document.getElementById('funcoesIgrejaBarras'), {
+            type: 'bar',
+            data: {
+                labels: ['Pastor', 'Diácono', 'Obreiro', 'Membro'], // Exemplos de labels
+                datasets: [{
+                    data: funcoesIgrejaData,
+                    backgroundColor: '#36A2EB'
+                }]
+            },
+            options: {
+                // Opções do gráfico de barras
+            }
+        });
+    </script>
+</body>
+</html>
